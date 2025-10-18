@@ -1,16 +1,3 @@
-// document.addEventListener("DOMContentLoaded",() => {
-
-//     const display = document.querySelector(".display");
-//     const btn = document.querySelectorAll(".calculator > div");
-//     btn.forEach(button => {
-//         button.addEventListener("click",() => {
-//             const value =button.textContent.trim();
-//             display.textContent = value;
-//         })
-//     })
-
-// }
-// )
 
 function mathOperator (num1,num2,operate){
     if(operate === '*'){
@@ -34,9 +21,27 @@ function mathOperator (num1,num2,operate){
 
 }
 
-let num1 = prompt("Enter first number :");
-let num2 = prompt("Enter second number :");
+let num1 = parseFloat(prompt("Enter first number :"));
+let num2 = parseFloat(prompt("Enter second number :"));
 let operate = prompt("Enter your operator :");
 
 
 console.log(mathOperator(num1,num2,operate));
+
+document.addEventListener("DOMContentLoaded", () => {
+    const display = document.querySelector(".display");
+    const buttons = document.querySelectorAll(".calculator > div");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const value = button.textContent.trim();
+
+            if (!isNaN(value) && value !== "") {
+                display.textContent += value;
+                
+            }
+        });
+    });
+});
+let value = "";
+console.log(value);
