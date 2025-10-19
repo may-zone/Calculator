@@ -1,47 +1,70 @@
-
-function mathOperator (num1,num2,operate){
-    if(operate === '*'){
-        return num1 * num2;
-    }
-    else if( operate === '/'){
-        return num1 / num2;
-    }
-    else if( operate === '+'){
-        return num1 + num2;
-    }
-    else if( operate === '-'){
-        return num1 - num2;
-    }
-    else if( operate === '%'){
-        return num1 % num2;
-    }
-    else {
-        return console.log("Wrong operator")
-    }
-
+function mathOperator(num1, num2, operate) {
+  if (operate === "*") {
+    return num1 * num2;
+  } else if (operate === "/") {
+    if (num2 !== 0) {
+      return num1 / num2;
+    } else return "ERROR";
+  } else if (operate === "+") {
+    return num1 + num2;
+  } else if (operate === "-") {
+    return num1 - num2;
+  } else if (operate === "%") {
+    return num1 % num2;
+  } else {
+    return console.log("Wrong operator");
+  }
 }
 
-let num1 = parseFloat(prompt("Enter first number :"));
-let num2 = parseFloat(prompt("Enter second number :"));
-let operate = prompt("Enter your operator :");
-
-
-console.log(mathOperator(num1,num2,operate));
+// let num1 = parseFloat(prompt("Enter first number :"));
+// let num2 = parseFloat(prompt("Enter second number :"));
+// let operate = prompt("Enter your operator :");
 
 document.addEventListener("DOMContentLoaded", () => {
-    const display = document.querySelector(".display");
-    const buttons = document.querySelectorAll(".calculator > div");
+  const display = document.querySelector(".display");
+  const buttons = document.querySelectorAll(".calculator > div");
+  let curInput = "";
+  let prevInput = "";
+  let operator = "";
 
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            const value = button.textContent.trim();
+  const updateDisplay = (text) => (display.textContent = text ?? "");
 
-            if (!isNaN(value) && value !== "") {
-                display.textContent += value;
-                
-            }
-        });
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const value = button.textContent.trim();
+
+      if (!isNaN(value) && value !== "") {
+        curInput += value;
+        updateDisplay(curInput);
+        return;
+      }
+      if (["+", "-", "*", "/", "%"].includes(value)) {
+        if (curInput !== "") {
+          prevInput = curInput;
+          curInput = "";
+        }
+        operator = value;
+        return;
+      }
+      if (value === "=") {
+        if (curInput !== "" && prevInput !== "" && operator !== "") {
+          const result = mathOperator(
+            parseFloat(prevInput),
+            parseFloat(curInput),
+            operator
+          );
+          display.textContent = result;
+          curInput = result.toString();
+          prevInput = "";
+          operator = "";
+        }
+      } else if (value === "AC") {
+        curInput = "";
+        prevInput = "";
+        operator = "";
+        updateDisplay("");
+        return;
+      }
     });
+  });
 });
-let value = "";
-console.log(value);
