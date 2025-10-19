@@ -22,7 +22,7 @@ body{
 }
 .calculator{
     width: 25vw;
-    height: 30vw;
+    height: 32vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,11 +32,11 @@ body{
     background-color: #141010;
     
 }
-.calculator div{
+.calculator > div:not(.display){
     border-radius: 50%;
     margin: 1px;
-    width: 18%;
-    height: 18%;
+    width: 15%;
+    height: 15%;
     box-sizing: border-box;
     display: flex;
     background: black;
@@ -45,18 +45,24 @@ body{
     justify-content: center;
     align-items: center;
     flex: 0 0 calc(25% - 2%);
-    aspect-ratio: 3 / 2;
+    /* aspect-ratio: 3 / 2; */
     position: relative;
     z-index: 0;
     transition: color .3s ease, text-shadow .3s ease, transform .3s ease;
 }
-.display{
-    height: 2vw;
-    width:20vw;
-    margin-bottom: 20px;
-    font-size: 32px;
-    border-radius: 15px;
-
+.calculator .display{
+  flex: 0 0 90%;
+  width: 90%;
+  height: 2vw;
+  /* border:rebeccapurple solid; */
+  color: #e3e3e3;
+  font-family: 'calculator', monospace;
+  font-size: 2.4vw;
+  text-align: right;
+  padding: .8vw 1.2vw;
+  border-radius: 15px;
+  margin: 1vw 0 1.2vw;
+  overflow: hidden;
 }
 
 .calculator div::before{
