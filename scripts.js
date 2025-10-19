@@ -29,15 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateDisplay = (text) => (display.textContent = text ?? "");
   const backSpace = document.querySelector(".backSpace");
-  backSpace.addEventListener("click", () => {                 // ← ADD
-  if (curInput !== "") {                                    // در حال تایپ عدد جاری
+  backSpace.addEventListener("click", () => {
+  if (curInput !== "") {                                    
     curInput = curInput.slice(0, -1);
     updateDisplay(curInput);
-  } else if (prevInput !== "") {                            // هنوز عدد قبلی روی نمایشگره
+  } else if (prevInput !== "") { 
     prevInput = prevInput.slice(0, -1);
     updateDisplay(prevInput);
-  } else {                                                  // چیزی برای حذف نیست
-    updateDisplay(display.textContent);                     // بدون تغییر
+    updateDisplay(display.textContent);
   }
 });
 
@@ -48,6 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isNaN(value) && value !== "") {
         curInput += value;
         updateDisplay(curInput);
+        return;
+      }
+      if (value === ".") {
+        if (!curInput.includes(".")) {
+          curInput += ".";
+          updateDisplay(curInput);
+        }
         return;
       }
       if (["+", "-", "*", "/", "%"].includes(value)) {
