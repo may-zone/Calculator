@@ -28,6 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let operator = "";
 
   const updateDisplay = (text) => (display.textContent = text ?? "");
+  const backSpace = document.querySelector(".backSpace");
+  backSpace.addEventListener("click", () => {                 // ← ADD
+  if (curInput !== "") {                                    // در حال تایپ عدد جاری
+    curInput = curInput.slice(0, -1);
+    updateDisplay(curInput);
+  } else if (prevInput !== "") {                            // هنوز عدد قبلی روی نمایشگره
+    prevInput = prevInput.slice(0, -1);
+    updateDisplay(prevInput);
+  } else {                                                  // چیزی برای حذف نیست
+    updateDisplay(display.textContent);                     // بدون تغییر
+  }
+});
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
