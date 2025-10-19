@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/calculator');
+
 body{
     align-items: center;
     justify-content: center;
@@ -16,6 +18,7 @@ body{
     width: 40vw;
     height: 40vw;
     flex-direction: column;
+    font-family: 'calculator';
 }
 .calculator{
     width: 25vw;
@@ -24,6 +27,9 @@ body{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    /* border: #455d7a solid; */
+    border-radius: 5%;
+    background-color: #141010;
     
 }
 .calculator div{
@@ -47,8 +53,10 @@ body{
 .display{
     height: 2vw;
     width:20vw;
-    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 32px;
+    border-radius: 15px;
+
 }
 
 .calculator div::before{
