@@ -30,15 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const updateDisplay = (text) => (display.textContent = text ?? "");
   const backSpace = document.querySelector(".backSpace");
   backSpace.addEventListener("click", () => {
-  if (curInput !== "") {                                    
-    curInput = curInput.slice(0, -1);
-    updateDisplay(curInput);
-  } else if (prevInput !== "") { 
-    prevInput = prevInput.slice(0, -1);
-    updateDisplay(prevInput);
-    updateDisplay(display.textContent);
-  }
-});
+    if (curInput !== "") {
+      curInput = curInput.slice(0, -1);
+      updateDisplay(curInput);
+    } else if (prevInput !== "") {
+      prevInput = prevInput.slice(0, -1);
+      updateDisplay(prevInput);
+      updateDisplay(display.textContent);
+    }
+  });
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         return;
       }
+
       if (["+", "-", "*", "/", "%"].includes(value)) {
         if (curInput !== "") {
           prevInput = curInput;
